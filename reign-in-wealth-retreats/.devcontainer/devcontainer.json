@@ -1,0 +1,21 @@
+{
+  "name": "Reign in Wealth Retreats",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:5-24-bookworm",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Reign in Wealth Retreats",
+      "onAutoForward": "notify",
+      "protocol": "http"
+    }
+  },
+  "postCreateCommand": "npm ci",
+  "remoteUser": "node",
+  "customizations": {
+    "codespaces": { "openFiles": ["README.md"] },
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"],
+      "settings": { "editor.formatOnSave": false }
+    }
+  }
+}

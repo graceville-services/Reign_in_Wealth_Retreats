@@ -1,0 +1,15 @@
+# Root-only local/generated directories. Keep src/data/retreats.ts in the build.
+/node_modules/
+/.next/
+/.git/
+/.github/
+/.devcontainer/
+/.env
+/.env.*
+!/.env.example
+/data/
+/backups/
+/*.zip
+/*.log
+/*.tsbuildinfo
+/.DS_Store

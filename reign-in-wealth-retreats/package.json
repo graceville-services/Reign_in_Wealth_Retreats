@@ -1,0 +1,36 @@
+{
+  "name": "reign-in-wealth-retreats",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reign in Wealth Retreats — luxury travel, connection, and purpose.",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "setup": "node scripts/setup.mjs",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "backup": "node scripts/backup.mjs",
+    "jobs": "node --import tsx scripts/jobs.ts",
+    "format": "prettier --write src scripts tests *.json *.ts docs README.md"
+  },
+  "dependencies": {
+    "lucide-react": "^0.577.0",
+    "next": "16.4.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "stripe": "^20.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "prettier": "3.8.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

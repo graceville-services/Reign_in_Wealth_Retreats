@@ -1,0 +1,12 @@
+# Local dependencies and generated output at the project root.
+/node_modules/
+/.next/
+/.env*
+!/.env.example
+# Runtime data only; src/data/retreats.ts is source and must remain tracked.
+/data/
+/backups/
+/public/uploads/*
+!/public/uploads/.gitkeep
+*.log
+*.tsbuildinfo

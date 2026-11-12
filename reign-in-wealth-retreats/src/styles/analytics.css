@@ -1,0 +1,129 @@
+.riw-consent {
+  position: fixed;
+  z-index: 80;
+  bottom: 22px;
+  left: 22px;
+  width: min(430px, calc(100vw - 44px));
+  padding: 25px 26px;
+  background: #fffef9;
+  border: 1px solid #d8ddce;
+  box-shadow: 0 10px 45px #183d3424;
+  color: #173f35;
+  font-family: var(--font-body, Arial), Arial, sans-serif;
+}
+.riw-consent-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 17px;
+}
+.riw-consent-head > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #84734d;
+  font-weight: 600;
+}
+.riw-consent h2 {
+  font-family: var(--font-display, Georgia), Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.2px;
+  margin: 0 0 12px;
+}
+.riw-consent p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #667261;
+  margin: 0 0 21px;
+}
+.riw-consent p a {
+  color: #173f35;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.riw-consent-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.riw-consent-actions button {
+  font: inherit;
+  font-size: 11px;
+  padding: 12px 10px;
+  min-height: 43px;
+  border: 1px solid #173f35;
+  color: #173f35;
+  background: transparent;
+  cursor: pointer;
+}
+.riw-consent-actions .riw-consent-accept {
+  background: #173f35;
+  color: #fff;
+}
+.riw-consent-actions button:hover {
+  background: #e8eee2;
+}
+.riw-consent-actions .riw-consent-accept:hover {
+  background: #245546;
+}
+.riw-consent-close {
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  color: #667261;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.riw-consent-reopen {
+  position: fixed;
+  z-index: 70;
+  bottom: 14px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fffef9e8;
+  border: 1px solid #d8ddce;
+  padding: 8px 11px;
+  font: inherit;
+  font-family: var(--font-body, Arial), Arial, sans-serif;
+  font-size: 9px;
+  color: #54664f;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #183d3412;
+}
+.riw-consent-actions button:focus-visible,
+.riw-consent-close:focus-visible,
+.riw-consent-reopen:focus-visible {
+  outline: 3px solid #b89966;
+  outline-offset: 3px;
+}
+@media (max-width: 520px) {
+  .riw-consent {
+    bottom: 12px;
+    left: 12px;
+    width: calc(100vw - 24px);
+    padding: 22px;
+  }
+  .riw-consent h2 {
+    font-size: 27px;
+  }
+  .riw-consent-reopen {
+    left: 12px;
+    bottom: 10px;
+  }
+}
+@media print {
+  .riw-consent,
+  .riw-consent-reopen {
+    display: none;
+  }
+}
