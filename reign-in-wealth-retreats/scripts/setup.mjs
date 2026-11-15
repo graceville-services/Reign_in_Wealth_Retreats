@@ -1,8 +1,8 @@
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { randomBytes, scryptSync } from "node:crypto";
-if (Number(process.versions.node.split(".")[0]) < 24) {
+if (Number(process.versions.node.split(".")[0]) < 22) {
   console.error(
-    "This project requires Node.js 24 or newer. Run nvm install 24 && nvm use 24.",
+    "This project requires Node.js 22 or newer. Run nvm install 22 && nvm use 22.",
   );
   process.exit(1);
 }

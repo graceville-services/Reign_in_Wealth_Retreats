@@ -2,9 +2,9 @@
   "name": "reign-in-wealth-retreats",
   "version": "1.0.0",
   "private": true,
-  "description": "Reign in Wealth Retreats — luxury travel, connection, and purpose.",
+  "description": "Reign in Wealth Retreats \u2014 luxury travel, connection, and purpose.",
   "engines": {
-    "node": ">=24.0.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "dev": "node scripts/dev.mjs",

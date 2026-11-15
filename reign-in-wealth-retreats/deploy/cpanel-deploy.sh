@@ -25,13 +25,15 @@ for item in src public scripts docs; do
     cp -a "${REPO_ROOT}/${item}/." "${APP_ROOT}/${item}/"
   fi
 done
-for item in package.json package-lock.json next.config.ts next-env.d.ts tsconfig.json .env.example; do
+for item in app.js package.json package-lock.json next.config.ts next-env.d.ts tsconfig.json .env.example; do
   if [[ -f "${REPO_ROOT}/${item}" ]]; then
     cp -a "${REPO_ROOT}/${item}" "${APP_ROOT}/${item}"
   fi
 done
 
 cd "${APP_ROOT}"
+export PATH="/opt/cpanel/ea-nodejs22/bin:${PATH}"
+hash -r
 if [[ ! -f .env ]]; then
   echo 'ERROR: Missing production .env in application directory.' >&2
   echo "Create ${APP_ROOT}/.env from .env.example and set APP_URL, secrets, and provider keys." >&2
@@ -39,12 +41,12 @@ if [[ ! -f .env ]]; then
 fi
 if ! command -v node >/dev/null 2>&1 || ! command -v npm >/dev/null 2>&1; then
   echo 'ERROR: Node.js/npm are not available in the cPanel Git deployment shell.' >&2
-  echo 'Enable the Node.js 24 environment in the script or ask your hosting provider.' >&2
+  echo 'Enable the Node.js 22 environment in the script or ask your hosting provider.' >&2
   exit 1
 fi
 NODE_MAJOR="$(node -p 'Number(process.versions.node.split(".")[0])')"
-if (( NODE_MAJOR < 24 )); then
-  echo "ERROR: Node.js 24+ required; cPanel deployment shell is using $(node -v)." >&2
+if (( NODE_MAJOR < 22 )); then
+  echo "ERROR: Node.js 22+ required; cPanel deployment shell is using $(node -v)." >&2
   exit 1
 fi
 

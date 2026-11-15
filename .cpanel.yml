@@ -1,0 +1,4 @@
+---
+deployment:
+  tasks:
+    - /bin/bash reign-in-wealth-retreats/deploy/cpanel-deploy.sh

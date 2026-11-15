@@ -121,3 +121,8 @@ See [Operations](docs/OPERATIONS.md) for Docker commands, job scheduling, backup
 The code includes automated checks and testable provider integrations. A successful local build or test suite does not mean that your Stripe account, webhook delivery, Resend domain, public hosting, or scheduler has been verified. Follow the sandbox payment and email acceptance steps in the launch guide with your own accounts before opening paid reservations.
 
 See [Delivery verification](docs/VERIFICATION.md) for the completed build, server, and browser checks and the remaining account-specific acceptance steps.
+
+
+## Deploy using cPanel Git Version Control
+
+See [`deploy/CPANEL-README.md`](deploy/CPANEL-README.md) and the checked-in `.cpanel.yml`. cPanel Git deployment copies/builds the application; the Node.js app manager must still be configured separately.
