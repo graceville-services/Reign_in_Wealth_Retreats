@@ -46,6 +46,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             <Link href="/experience">The experience</Link>
             <Link href="/about">Meet our founder</Link>
             <Link href="/journal">Travel journal</Link>
+            <Link href="/gallery">Photo gallery</Link>
             <Link href="/testimonials">Traveler stories</Link>
           </div>
           <div>

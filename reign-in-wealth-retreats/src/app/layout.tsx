@@ -21,6 +21,13 @@ export const metadata: Metadata = {
     images: [{ url: "/images/hero-zanzibar.webp", width: 1920, height: 1280 }],
   },
   twitter: { card: "summary_large_image" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico?v=2", sizes: "any", type: "image/x-icon" },
+      { url: "/icon.png?v=2", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png?v=2", sizes: "180x180", type: "image/png" }],
+  },
   robots: { index: true, follow: true },
 };
 export const viewport: Viewport = {

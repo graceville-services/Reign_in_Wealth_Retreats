@@ -8,6 +8,7 @@ const links = [
   { href: "/retreats", label: "Our retreats" },
   { href: "/experience", label: "The experience" },
   { href: "/about", label: "Our story" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/journal", label: "Travel journal" },
 ];
 export function Header() {

@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/experience",
     "/about",
     "/journal",
+    "/gallery",
     "/journal/ghana-2026",
     "/testimonials",
     "/faq",

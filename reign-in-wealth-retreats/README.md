@@ -126,3 +126,7 @@ See [Delivery verification](docs/VERIFICATION.md) for the completed build, serve
 ## Deploy using cPanel Git Version Control
 
 See [`deploy/CPANEL-README.md`](deploy/CPANEL-README.md) and the checked-in `.cpanel.yml`. cPanel Git deployment copies/builds the application; the Node.js app manager must still be configured separately.
+
+## New photo gallery and favicon
+
+The `/gallery` page includes an accessible, responsive lightbox and category filters. The new browser favicon is cropped from the supplied Reign in Wealth brand art. The actual traveler photographs are **not** bundled unless approved photos have been imported. See [`docs/GALLERY.md`](docs/GALLERY.md) for how to import the owner-provided Google Drive photos as local optimized WebP images and redeploy with cPanel.

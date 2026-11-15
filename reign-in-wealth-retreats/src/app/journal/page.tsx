@@ -73,6 +73,7 @@ export default function JournalPage() {
           </div>
         </div>
       </section>
+      <section className="container" style={{paddingBottom: "90px"}}><Link href="/gallery" className="button button-primary">Explore the photo gallery <ArrowUpRight size={17} /></Link></section>
       <CommunityBanner />
     </>
   );

@@ -31,6 +31,10 @@ for item in app.js package.json package-lock.json next.config.ts next-env.d.ts t
   fi
 done
 
+# Remove the pre-gallery fallback icon from past releases. The new branded
+# favicon is provided as icon.png, apple-icon.png, and favicon.ico.
+rm -f "${APP_ROOT}/src/app/icon.svg"
+
 cd "${APP_ROOT}"
 export PATH="/opt/cpanel/ea-nodejs22/bin:${PATH}"
 hash -r
