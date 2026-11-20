@@ -38,14 +38,89 @@ export function appUrl() {
   );
   return url.origin;
 }
+// Origin allowlist includes only the canonical site and explicitly configured HTTPS
+// preview URLs. Do not trust arbitrary Host or X-Forwarded-Host headers.
+function configuredTrustedOrigins() {
+  const trusted = new Set([appUrl()]);
+  for (const entry of (process.env.APP_ALLOWED_ORIGINS || "").split(",")) {
+    const configured = entry.trim();
+    if (!configured) continue;
+    let url: URL;
+    try {
+      url = new URL(configured);
+    } catch {
+      throw new ApiError(503, "APP_ALLOWED_ORIGINS contains an invalid URL.");
+    }
+    requireCondition(
+      configured === url.origin &&
+        (url.protocol === "https:" ||
+          (!production() && url.origin === "http://localhost:3000")),
+      "APP_ALLOWED_ORIGINS must contain exact HTTPS origins.",
+      503,
+    );
+    trusted.add(url.origin);
+  }
+  return trusted;
+}
+
+// GitHub Codespaces' HTTPS port-forward proxy can rewrite a browser's Origin
+// to http://localhost:PORT while retaining its public Host and Referer.
+// Do not generally trust localhost in production: permit this special case
+// ONLY inside Codespaces and only if all independent browser/host signals
+// match this Codespace's explicitly allowlisted HTTPS origin.
+function isCodespacesOriginRewrite(
+  request: Request,
+  origin: string,
+  trustedOrigins: Set<string>,
+) {
+  if (process.env.CODESPACES !== "true") return false;
+  const codespaceName = process.env.CODESPACE_NAME;
+  if (!codespaceName) return false;
+  const forwardingDomain =
+    process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN || "app.github.dev";
+  const previewHost = `${codespaceName}-3000.${forwardingDomain}`;
+  const previewOrigin = `https://${previewHost}`;
+  if (!trustedOrigins.has(previewOrigin)) return false;
+  if (origin !== "http://localhost:3000" && origin !== "http://127.0.0.1:3000")
+    return false;
+  if (request.headers.get("host") !== previewHost) return false;
+  const fetchSite = request.headers.get("sec-fetch-site");
+  if (fetchSite && fetchSite !== "same-origin") return false;
+  const referer = request.headers.get("referer");
+  if (!referer) return false;
+  try {
+    return new URL(referer).origin === previewOrigin;
+  } catch {
+    return false;
+  }
+}
+
 export function checkOrigin(request: Request) {
   const origin = request.headers.get("origin");
-  if (
-    origin &&
-    origin !== appUrl() &&
-    (production() || origin !== new URL(request.url).origin)
-  )
-    throw new ApiError(403, "This request must come from this website.");
+  if (!origin) return;
+
+  const trustedOrigins = configuredTrustedOrigins();
+  // Preserve direct localhost development; the security exception below is
+  // deliberately narrower when NODE_ENV=production.
+  if (!production()) trustedOrigins.add(new URL(request.url).origin);
+  if (trustedOrigins.has(origin)) return;
+  if (isCodespacesOriginRewrite(request, origin, trustedOrigins)) return;
+
+  if (process.env.DEBUG_ORIGIN === "true") {
+    // For local debugging only; do not log cookies, credentials or auth tokens.
+    console.warn("[origin-check] Rejected request", {
+      requestOrigin: origin,
+      configuredOrigins: [...trustedOrigins],
+      requestUrlOrigin: new URL(request.url).origin,
+      host: request.headers.get("host"),
+      refererOrigin: (() => {
+        try { return new URL(request.headers.get("referer") || "").origin; }
+        catch { return null; }
+      })(),
+      codespaces: process.env.CODESPACES === "true",
+    });
+  }
+  throw new ApiError(403, "This request must come from this website.");
 }
 export async function jsonBody(request: Request) {
   requireCondition(
