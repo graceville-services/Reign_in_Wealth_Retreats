@@ -3,6 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { getSettings } from "@/lib/server/data";
 import "./globals.css";
+import "@/styles/photography.css";
 import Analytics from "@/components/site/Analytics";
 const siteUrl = process.env.APP_URL || "http://localhost:3000";
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     siteName: "Reign in Wealth Retreats",
     title: "Reign in Wealth Retreats",
     description: "Explore the world. Expand your vision. Reign in Wealth.",
-    images: [{ url: "/images/hero-zanzibar.webp", width: 1920, height: 1280 }],
+    images: [{ url: "/images/retreats-share.jpg", width: 1200, height: 630, alt: "Reign in Wealth guests together in Ghana" }],
   },
   twitter: { card: "summary_large_image" },
   icons: {

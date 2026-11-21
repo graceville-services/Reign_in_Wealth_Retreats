@@ -1,8 +1,10 @@
 # Reign in Wealth Retreats
 
+**November 20, 2026 update:** Read [docs/PRODUCTION.md](docs/PRODUCTION.md) for the production environment, [docs/GALLERY.md](docs/GALLERY.md) for the completed photo collection, and [docs/UPDATE-NOTES.md](docs/UPDATE-NOTES.md) for this delivery.
+
 A complete, independently built retreat website for Reign in Wealth, a business within The Millionaire Chick family. It combines an editorial travel website with a working administration area, individual traveler registration, a traveler portal, and configurable payment and email services.
 
-The design uses the supplied logo, emerald and warm ivory, restrained gold accents, locally hosted typography, and real destination photography. No JUJO code or integrations are required.
+The design uses the supplied logo, emerald and warm ivory, restrained gold accents, locally hosted typography, 86 owner-supplied retreat photographs and three original destination illustrations. No JUJO code or integrations are required.
 
 ## Run it in Codespaces
 
@@ -99,7 +101,8 @@ src/components/          Reusable public and management interfaces
 src/data/retreats.ts      First-run content only
 src/lib/server/          Database, authentication, validation, payments, email, API
 src/lib/types.ts          Shared application contracts
-public/images/           Bundled logo and destination photography
+public/images/           Brand assets, original illustrations and social share image
+public/gallery/          Optimized owner-supplied retreat photographs
 public/fonts/            Bundled fonts and their licenses
 scripts/                 Setup, backup, and background jobs
 tests/                   Server behavior tests

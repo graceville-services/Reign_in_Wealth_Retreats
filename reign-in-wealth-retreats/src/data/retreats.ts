@@ -1,3 +1,5 @@
+import { featuredPhotos } from "./gallery";
+import { destinationArtwork } from "./media";
 import type { Retreat, SiteSettings, Testimonial } from "@/lib/types";
 
 const shared: Pick<
@@ -26,7 +28,7 @@ const shared: Pick<
   capacity: 0,
   hotelName: null,
   hotelDescription:
-    "Our accommodation selection is being curated. The hotel, room categories, and confirmed stay details will be shared before reservations open. Destination photography is for inspiration and does not identify a contracted hotel.",
+    "Our accommodation selection is being curated. The hotel, room categories, and confirmed stay details will be shared before reservations open. The imagery shown does not identify a contracted hotel.",
   published: true,
   bookingEnabled: false,
   cancellationPolicy:
@@ -59,9 +61,9 @@ export const retreatSeed: Retreat[] = [
       "Close the year with extraordinary experiences, meaningful connections, and a fresh perspective on what comes next.",
     description:
       "Step into a city that invites you to think bigger. Our Dubai retreat brings the Reign in Wealth community together for luxury, cultural discovery, conversation, and a memorable welcome to the new year. The retreat dates are announced; accommodations, the final itinerary, package inclusions, and pricing are still being curated. The daily outline below is a proposed experience, not a confirmed schedule.",
-    image: "/images/dubai.webp",
-    heroImage: "/images/dubai.webp",
-    gallery: ["/images/dubai.webp", "/images/dubai-detail.webp"],
+    image: destinationArtwork.dubai,
+    heroImage: destinationArtwork.dubai,
+    gallery: [destinationArtwork.dubai],
     dateLabel: "December 27, 2026 – January 2, 2027",
     startDate: "2026-12-27",
     endDate: "2027-01-02",
@@ -131,9 +133,9 @@ export const retreatSeed: Retreat[] = [
       "An immersive journey through culture, community, real estate exploration, and the warmth of Ghana.",
     description:
       "Discover Ghana through a journey designed to connect culture, community, and a broader view of opportunity. From meaningful conversations to cultural exploration and exposure to real estate and enterprise, this retreat invites you to see beyond the familiar. The dates are announced; the cities, venues, accommodation, package, and daily program are still being finalized. The outline below is proposed inspiration only. Investment exposure is educational and does not promise any financial outcome.",
-    image: "/images/ghana.webp",
-    heroImage: "/images/ghana.webp",
-    gallery: ["/images/ghana.webp", "/images/ghana-detail.webp"],
+    image: featuredPhotos.exploring.src,
+    heroImage: featuredPhotos.exploring.src,
+    gallery: [featuredPhotos.exploring.src, featuredPhotos.waterfall.src, featuredPhotos.arrival.src],
     dateLabel: "August 5–15, 2027",
     startDate: "2027-08-05",
     endDate: "2027-08-15",
@@ -227,13 +229,9 @@ export const retreatSeed: Retreat[] = [
       "An Indian Ocean escape where island beauty, cultural discovery, and meaningful connection meet.",
     description:
       "Let the pace soften and your perspective expand. Our Zanzibar retreat is envisioned as a thoughtfully curated blend of island relaxation, cultural exploration, adventure, and connection. September 2027 is the planned travel month. Exact dates, duration, accommodation, itinerary, and pricing will be announced together; registering interest keeps you in the conversation without creating a reservation.",
-    image: "/images/zanzibar.webp",
-    heroImage: "/images/hero-zanzibar.webp",
-    gallery: [
-      "/images/zanzibar.webp",
-      "/images/hero-zanzibar.webp",
-      "/images/experience.webp",
-    ],
+    image: destinationArtwork.zanzibar,
+    heroImage: destinationArtwork.zanzibar,
+    gallery: [destinationArtwork.zanzibar],
     dateLabel: "September 2027 · dates to be confirmed",
     startDate: null,
     endDate: null,
@@ -260,9 +258,9 @@ export const retreatSeed: Retreat[] = [
       "Tropical beauty, unhurried moments, and a new circle of connection. Be first to hear what is next.",
     description:
       "A new Reign in Wealth experience is on the horizon. Our Dominican Republic retreat is being imagined around relaxation, connection, and unforgettable Caribbean moments. Travel dates, the location, accommodation, duration, and all package details are still to be announced. Join the destination interest list to hear from us as the experience takes shape.",
-    image: "/images/dominican-republic.webp",
-    heroImage: "/images/dominican-republic.webp",
-    gallery: ["/images/dominican-republic.webp"],
+    image: destinationArtwork.dominican,
+    heroImage: destinationArtwork.dominican,
+    gallery: [destinationArtwork.dominican],
     dateLabel: "Coming soon",
     startDate: null,
     endDate: null,

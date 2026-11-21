@@ -1,45 +1,29 @@
-# cPanel Git deployment for Reign in Wealth Retreats
+# cPanel production deployment
 
-This repository includes `.cpanel.yml` at **the Git repository root**. Commit it to GitHub. cPanel Git Version Control requires a checked-in `.cpanel.yml` and a **clean Git working tree**.
+This app keeps the existing Next.js / SQLite / local media architecture. Use the Node.js **22.23.5 or newer** runtime already configured for Passenger.
 
-## Before the first deployment
+The repository-root `.cpanel.yml` invokes `reign-in-wealth-retreats/deploy/cpanel-deploy.sh`; the app-level `.cpanel.yml` supports a checkout where the app itself is the root. The script copies source into `$HOME/reign-wealth-retreats-app` (overridable with `CPANEL_APP_ROOT`), preserving runtime data there.
 
-1. Confirm your hosting plan supports **Node.js 24+**, a persistent Next.js server, shell commands, and sufficient memory for `next build`. The cPanel Git interface alone does **not** run the website.
-2. cPanel Git Version Control: clone your GitHub repository into a **repository directory**, not `public_html` and not the live app directory.
-3. The deploy script copies source code into `$HOME/reign-wealth-retreats-app` by default. If your cPanel Node.js application root is different, edit `deploy/cpanel-deploy.sh` to set APP_ROOT appropriately, or add a preceding `.cpanel.yml` task defining `CPANEL_APP_ROOT` in the same shell execution context.
-4. Via SSH, prepare the production configuration *outside the Git checkout*:
+Use `app.js` as Passenger's startup file. Keep the app directory outside `public_html`. Configure HTTPS for both `reigninwealthretreats.com` and `www.reigninwealthretreats.com`.
 
-   ```bash
-   mkdir -p "$HOME/reign-wealth-retreats-app/data/media" "$HOME/reign-wealth-retreats-app/backups"
-   cp /path/to/git-checkout/.env.example "$HOME/reign-wealth-retreats-app/.env"
-   chmod 600 "$HOME/reign-wealth-retreats-app/.env"
-   nano "$HOME/reign-wealth-retreats-app/.env"
-   ```
+## Prepare and deploy
 
-   Set `APP_URL=https://your-domain.example` and secrets; set `DEV_PREVIEW_MODE=false`; use persistent absolute paths for `DATABASE_PATH`, `MEDIA_PATH`, and `BACKUP_PATH` to avoid path ambiguity. Never commit `.env` or production runtime files.
-
-5. Ensure cPanel's deployment shell has Node.js **24+** and npm on its `PATH`. The cPanel Node.js application selector and the Git deployment shell may have different `PATH` settings. The script fails clearly if Node is missing or too old.
-6. Go to cPanel **Git Version Control → Manage → Pull or Deploy → Update from Remote → Deploy HEAD Commit**. Git must be clean (`git status --porcelain` prints nothing). The script copies source, runs `npm ci` and `npm run build`, then touches `tmp/restart.txt`.
-7. **Separately configure the hosting provider's Node.js application manager or process supervisor** for this app root, start command, public domain and HTTPS. `npm start` uses Next.js on port 3000 when a standalone process manager is supported; Passenger setups may require additional host-specific startup wiring. Git deployment by itself does not register, start, or route the application.
-8. Test `/api/health`, `/admin`, bookings, and Stripe webhooks. Configure real email, approved pricing, SSL, scheduled reminder jobs, and off-server backups before accepting payments.
-
-## If cPanel still says it cannot deploy
-
-Run in **the cPanel Git checkout**:
+Read [the complete production guide](../docs/PRODUCTION.md). After copying the updated source into the live application directory:
 
 ```bash
-pwd
-ls -la .cpanel.yml
-git ls-files .cpanel.yml
-git status --porcelain
-git branch --show-current
+export PATH="/opt/cpanel/ea-nodejs22/bin:$PATH"
+node scripts/production-env.mjs --admin-email YOUR_CONTROLLED_EMAIL
+node scripts/production-env.mjs --admin-email YOUR_CONTROLLED_EMAIL --apply
+npm ci --include=dev --no-audit --no-fund
+npm run check:production
+npm run build
+node scripts/cleanup-legacy-images.mjs
+mkdir -p tmp
+touch tmp/restart.txt
 ```
 
-If `.cpanel.yml` isn't tracked, commit and push it **from Codespaces**, then use **Update from Remote** in cPanel. Do **not** edit tracked files directly inside the cPanel-managed Git checkout, because it must remain clean.
+Use your actual controlled administrator email. The preview/apply commands preserve existing credentials and storage paths, generate missing secrets, and back up an existing `.env`. Save any generated password privately. Add actual Stripe and Resend credentials when those integrations are needed.
 
-## Important limitations
+Subsequent cPanel Git deployments install dependencies, validate the environment, build and touch the restart marker. The Git checkout must be clean with `.cpanel.yml` committed. Use Update from Remote, then Deploy HEAD Commit. Do not edit tracked files in the cPanel-managed checkout.
 
-- This ZIP reflects the **SQLite/local-storage version** supplied by the user. It does not migrate the separately discussed Supabase version; do not combine their env files or data without a proper migration.
-- Keep the app root outside publicly accessible `public_html` so `.env`, SQLite databases and user uploads cannot be served directly.
-- `cp -a` is conservative: deployments will not delete old source files that were removed from Git. If you remove routes/files, delete obsolete deployed copies deliberately during a maintenance window (do not delete `data`, `.env`, or `backups`).
-- A failed build leaves the previously built `.next` directory potentially modified. For reliable zero-downtime deployments, use release directories and atomic switching instead.
+The cPanel route runs the full `.next` build with installed dependencies. The Docker standalone `server.js` is a separate route, not Passenger's entry point. This update does not migrate to Supabase or change the existing database. The copy/build workflow is not an atomic release-switching deployment.

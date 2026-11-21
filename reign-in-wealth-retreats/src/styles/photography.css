@@ -1,0 +1,538 @@
+/* Owner photography and a compact editorial home overview. */
+.home-overview .home-hero {
+  height: 610px;
+  min-height: 0;
+  background: #102e27;
+}
+.home-overview .hero-image {
+  right: 0;
+  width: 58%;
+  height: 100%;
+  object-position: center 46%;
+}
+.home-overview .hero-shade {
+  background:
+    linear-gradient(
+      90deg,
+      #102e27 18%,
+      #102e27f0 38%,
+      #102e2780 58%,
+      #102e2712 85%
+    ),
+    linear-gradient(0deg, #102e2785, transparent 35%);
+}
+.home-overview .hero-content {
+  padding-top: 72px;
+}
+.home-overview .hero-content h1 {
+  font-size: clamp(54px, 5.6vw, 83px);
+  line-height: 1.025;
+}
+.home-overview .hero-content > p:not(.eyebrow) {
+  font-size: 14px;
+}
+.home-overview .hero-buttons {
+  gap: 25px;
+}
+.home-overview .hero-bottom {
+  bottom: 27px;
+}
+.home-overview .hero-location {
+  max-width: 270px;
+}
+.home-overview .brand-values .container {
+  justify-content: center;
+  gap: 10%;
+}
+.overview-moments {
+  padding: 64px 0 58px;
+}
+.overview-heading {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: end;
+  gap: 70px;
+  margin-bottom: 27px;
+}
+.overview-heading h2 {
+  font-size: clamp(38px, 4vw, 58px);
+}
+.overview-heading > div:last-child {
+  max-width: 405px;
+  justify-self: end;
+}
+.overview-heading > div:last-child > p {
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+.overview-photo-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 15px;
+}
+.overview-photo {
+  display: block;
+  position: relative;
+  min-width: 0;
+  height: 310px;
+  overflow: hidden;
+  background: var(--green);
+}
+.overview-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.overview-photo-wide img {
+  object-position: center 40%;
+}
+.overview-photo:hover img {
+  transform: scale(1.035);
+}
+.overview-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #0c241bd9, transparent 64%);
+}
+.overview-photo > div {
+  position: absolute;
+  bottom: 23px;
+  left: 22px;
+  right: 18px;
+  color: white;
+  z-index: 1;
+}
+.overview-photo > div > span {
+  font-size: 8px;
+  letter-spacing: 1.7px;
+  color: #edddb7;
+}
+.overview-photo h3 {
+  font-size: 29px;
+  margin-top: 8px;
+  font-weight: 400;
+}
+.overview-photo > svg {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  z-index: 1;
+  color: white;
+}
+.overview-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 16px;
+  align-items: center;
+}
+.overview-caption > span {
+  font-size: 10px;
+  color: var(--muted);
+}
+.home-overview .upcoming-section {
+  padding: 55px 0 62px;
+}
+.home-overview .section-heading {
+  margin-bottom: 27px;
+}
+.home-overview .retreat-card-image {
+  aspect-ratio: 1 / 1.13;
+}
+.home-overview .retreat-card-info h4 {
+  min-height: 0;
+}
+.card-art-label {
+  position: absolute;
+  z-index: 1;
+  right: 12px;
+  top: 43px;
+  color: #fff;
+  background: #102e2788;
+  padding: 3px 6px;
+  font-size: 7px;
+  letter-spacing: 0.5px;
+}
+.overview-invitation {
+  background: var(--green);
+  color: var(--ivory);
+  padding: 50px 0;
+}
+.overview-invitation > .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+}
+.overview-invitation h2 {
+  font-size: clamp(34px, 3.7vw, 53px);
+}
+.overview-invitation h2 em {
+  color: #e6d1a0;
+}
+.overview-invitation > .container > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+}
+.photo-gallery-hero {
+  height: 480px;
+  min-height: 0;
+}
+.photo-gallery-hero-media {
+  object-position: center 36%;
+}
+.photo-gallery-hero h1 {
+  font-size: clamp(58px, 6.5vw, 92px);
+}
+.photo-gallery-hero-content {
+  padding-block: 50px;
+}
+.gallery-photo-grid {
+  display: block;
+  columns: 3;
+  column-gap: 18px;
+}
+.gallery-photo-grid .gallery-photo-card {
+  display: block;
+  width: 100%;
+  aspect-ratio: auto;
+  break-inside: avoid;
+  margin: 0 0 18px;
+}
+.gallery-photo-grid .gallery-photo-card img {
+  height: auto;
+  object-fit: contain;
+}
+.gallery-photo-label strong {
+  font-size: 25px;
+}
+.gallery-photo-label {
+  left: 18px;
+  right: 40px;
+  bottom: 20px;
+  gap: 6px;
+}
+.gallery-filters button {
+  min-height: 44px;
+}
+.gallery-fullscreen button {
+  min-height: 44px;
+  min-width: 44px;
+}
+.gallery-fullscreen-info {
+  grid-template-columns: 46px 1fr 46px;
+}
+.gallery-fullscreen-info strong {
+  font-size: 24px;
+}
+.journal-album-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 22px;
+  margin: 37px 0 50px;
+}
+.journal-album-grid > a {
+  display: block;
+  min-width: 0;
+}
+.journal-album-grid img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+.journal-album-grid .eyebrow {
+  font-size: 9px;
+}
+.journal-album-grid h3 {
+  font-size: 30px;
+  margin: 7px 0 14px;
+}
+.journal-album-grid .text-link {
+  font-size: 11px;
+}
+@media (max-width: 1000px) {
+  .home-overview .home-hero {
+    height: 570px;
+  }
+  .home-overview .hero-content {
+    padding-top: 62px;
+  }
+  .home-overview .hero-content h1 {
+    font-size: 65px;
+  }
+  .overview-heading {
+    gap: 35px;
+  }
+  .overview-photo {
+    height: 280px;
+  }
+  .overview-photo h3 {
+    font-size: 24px;
+  }
+  .home-overview .retreat-grid-four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .home-overview .retreat-card-image {
+    aspect-ratio: 1.3;
+  }
+  .gallery-photo-grid {
+    columns: 2;
+  }
+}
+@media (max-width: 640px) {
+  .home-overview .home-hero {
+    height: 570px;
+    min-height: 0;
+  }
+  .home-overview .hero-image {
+    width: 100%;
+    object-position: 62% 45%;
+  }
+  .home-overview .hero-shade {
+    background:
+      linear-gradient(90deg, #0d2b24eb, #0d2b2470 80%),
+      linear-gradient(0deg, #0d2b24c9, transparent 50%);
+  }
+  .home-overview .hero-content {
+    padding-top: 64px;
+  }
+  .home-overview .hero-content .eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    margin-bottom: 22px;
+  }
+  .home-overview .hero-content h1 {
+    font-size: clamp(43px, 10.5vw, 61px);
+    letter-spacing: -1.5px;
+  }
+  .home-overview .hero-content > p:not(.eyebrow) {
+    font-size: 12px;
+    max-width: 290px;
+    margin-top: 22px;
+  }
+  .home-overview .hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 24px;
+  }
+  .home-overview .hero-buttons .button {
+    width: auto;
+    min-width: 225px;
+  }
+  .home-overview .hero-text-link {
+    font-size: 11px;
+    margin: 0;
+  }
+  .home-overview .hero-bottom {
+    bottom: 25px;
+    justify-content: flex-start;
+  }
+  .home-overview .scroll-hint {
+    display: none;
+  }
+  .home-overview .hero-location {
+    display: flex;
+    border: 0;
+    padding: 0;
+  }
+  .home-overview .brand-values .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 22px;
+    padding-block: 18px;
+  }
+  .home-overview .brand-values span {
+    font-size: 9px;
+    gap: 7px;
+  }
+  .home-overview .brand-values svg {
+    width: 14px;
+  }
+  .overview-moments {
+    padding: 40px 0;
+  }
+  .overview-heading {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 23px;
+  }
+  .overview-heading h2 {
+    font-size: 42px;
+  }
+  .overview-heading > div:last-child {
+    justify-self: start;
+  }
+  .overview-heading > div:last-child > p {
+    font-size: 12px;
+  }
+  .overview-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .overview-photo {
+    height: 220px;
+  }
+  .overview-photo-wide {
+    grid-column: 1 / -1;
+    height: 225px;
+  }
+  .overview-photo > div {
+    left: 15px;
+    right: 10px;
+    bottom: 16px;
+  }
+  .overview-photo h3 {
+    font-size: 25px;
+  }
+  .overview-photo > div > span {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .overview-caption {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .home-overview .upcoming-section {
+    padding: 39px 0 42px;
+  }
+  .home-overview .section-heading {
+    gap: 15px;
+  }
+  .home-overview .section-heading h2 {
+    font-size: 39px;
+  }
+  .home-overview .retreat-grid-four {
+    gap: 24px 15px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .home-overview .retreat-card-image {
+    aspect-ratio: 0.78;
+  }
+  .home-overview .card-image-title {
+    left: 12px;
+    bottom: 17px;
+    right: 12px;
+  }
+  .home-overview .card-image-title h3 {
+    font-size: 28px;
+    line-height: 0.98;
+  }
+  .home-overview .card-image-title > span {
+    font-size: 6px;
+  }
+  .home-overview .card-arrow {
+    display: none;
+  }
+  .home-overview .card-tag {
+    top: 9px;
+    left: 8px;
+    font-size: 6px;
+    padding: 4px;
+  }
+  .home-overview .card-art-label {
+    top: 37px;
+    right: 8px;
+    font-size: 6px;
+  }
+  .home-overview .retreat-card-info {
+    padding-top: 12px;
+  }
+  .home-overview .card-country {
+    font-size: 8px;
+    letter-spacing: 0.4px;
+  }
+  .home-overview .retreat-card-info h4 {
+    font-size: 10px;
+    margin: 8px 0;
+  }
+  .home-overview .card-date {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .home-overview .card-bottom {
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 10px;
+  }
+  .overview-invitation {
+    padding: 37px 0;
+  }
+  .overview-invitation > .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+  }
+  .overview-invitation h2 {
+    font-size: 39px;
+  }
+  .photo-gallery-hero {
+    height: 470px;
+  }
+  .photo-gallery-hero h1 {
+    font-size: 65px;
+  }
+  .photo-gallery-hero-media {
+    object-position: 66% center;
+  }
+  .gallery-photo-grid {
+    column-gap: 10px;
+  }
+  .gallery-photo-grid .gallery-photo-card {
+    margin-bottom: 10px;
+  }
+  .gallery-photo-label {
+    left: 10px;
+    right: 10px;
+    bottom: 13px;
+  }
+  .gallery-photo-label small {
+    font-size: 6px;
+  }
+  .gallery-photo-label strong {
+    font-size: 20px;
+  }
+  .gallery-fullscreen-info {
+    gap: 8px;
+  }
+  .gallery-fullscreen-info strong {
+    font-size: 20px;
+  }
+  .journal-album-grid {
+    gap: 30px;
+    grid-template-columns: 1fr;
+  }
+  .journal-album-grid img {
+    height: 250px;
+  }
+}
+@media (max-width: 420px) {
+  .gallery-photo-grid {
+    columns: 1;
+  }
+  .gallery-photo-label strong {
+    font-size: 28px;
+  }
+  .gallery-photo-label small {
+    font-size: 9px;
+  }
+  .gallery-photo-label {
+    left: 20px;
+    right: 35px;
+    bottom: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .overview-photo img,
+  .gallery-photo-grid img {
+    transition: none;
+  }
+}

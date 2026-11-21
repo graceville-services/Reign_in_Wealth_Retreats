@@ -1,11 +1,12 @@
 import type { Retreat, SiteSettings, Testimonial } from "../types";
 import { db } from "./db";
+import { resolveRetreatMedia } from "../../data/media";
 export function getRetreats(includeUnpublished = false): Retreat[] {
   const rows = db().prepare("SELECT data FROM retreats").all() as {
     data: string;
   }[];
   return rows
-    .map((row) => JSON.parse(row.data) as Retreat)
+    .map((row) => resolveRetreatMedia(JSON.parse(row.data) as Retreat))
     .filter((r) => includeUnpublished || r.published)
     .sort((a, b) =>
       (a.startDate || "9999").localeCompare(b.startDate || "9999"),
@@ -19,7 +20,7 @@ export function getRetreat(
     .prepare("SELECT data FROM retreats WHERE slug=? OR id=?")
     .get(slug, slug) as { data: string } | undefined;
   if (!row) return null;
-  const retreat = JSON.parse(row.data) as Retreat;
+  const retreat = resolveRetreatMedia(JSON.parse(row.data) as Retreat);
   return includeUnpublished || retreat.published ? retreat : null;
 }
 export function getSettings(): SiteSettings {

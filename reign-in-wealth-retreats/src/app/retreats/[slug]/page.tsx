@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { getRetreat, getRetreats } from "@/lib/server/data";
 import { money } from "@/lib/types";
+import { describeRetreatImage, isDestinationArtwork } from "@/data/media";
 import { FAQ } from "@/components/site/FAQ";
 import { Gallery } from "@/components/site/Gallery";
 import { LeadForm } from "@/components/site/LeadForm";
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? {
         title: `${r.destination} retreat`,
         description: r.excerpt,
-        openGraph: { images: [r.heroImage] },
+        openGraph: { images: [isDestinationArtwork(r.heroImage) ? "/images/retreats-share.jpg" : r.heroImage] },
       }
     : { title: "Retreat not found" };
 }
@@ -46,7 +47,7 @@ export default async function RetreatDetail({ params }: Props) {
       <section className="retreat-hero">
         <img
           src={r.heroImage}
-          alt={`${r.destination} destination landscape`}
+          alt={describeRetreatImage(r.heroImage, r.destination)}
           fetchPriority="high"
         />
         <div className="hero-shade" />

@@ -1,48 +1,32 @@
-# Image and font register
+# Image and font register — November 20, 2026
 
-The project bundles its visual assets locally. The website does not depend on third-party image servers for these images or fonts. Files were downloaded from the source pages below and converted to efficient WebP for use in this website. Copyright remains with each photographer.
+## Photography supplied by the owner
 
-## Brand asset
+All website photography in this update comes from the three archives attached for this task. No stock photographs are bundled or requested from an image CDN.
 
-`public/images/reign-in-wealth-logo.png` is the original logo supplied by the project owner. No third-party stock image is used as a logo or trademark.
+| Source archive | Photographs | Website collection |
+| --- | ---: | --- |
+| ARRIVAL-20261115T115615Z-1-001.zip | 23 | Arrival & connection |
+| ORPHANAGE-20261115T115615Z-1-001(1).zip | 33 | Giving back |
+| Same ORPHANAGE archive, meal/conversation sequence | 15 | Around the table |
+| REIGN IN WEALTH-20261115T115334Z-1-006.zip, DAY 6 | 15 | Explore Ghana |
 
-## Destination photography
+All 86 photographs are in `public/gallery/ghana-2026/`. Each has a full display version (up to 1800 pixels on its longest side) and a thumbnail (up to 720 pixels). Images are oriented using their EXIF rotation before encoding, never enlarged, and served without embedded EXIF/GPS metadata. The photographic content and existing photographic watermarks are retained. The raw originals stay outside the website package.
 
-These are **destination photographs for inspiration**. They are not photographs of Reign in Wealth travelers, confirmed accommodations, past events, or contracted activities. Do not relabel them as evidence of a past retreat or as a confirmed hotel. The Ghana 2026 journal and testimonials should use approved, authentic brand media when it is available.
+`docs/PHOTO-SOURCES.csv` records every published asset, its original archive and filename, source SHA-256, dimensions, and display file size. `src/data/gallery-photos.json` supplies accessible descriptions, captions, album assignments, dimensions, and thumbnail paths. Captions do not identify people by name or claim particular outcomes.
 
-| Local file                              | Photograph / location                                                 | Photographer       | Source and license                                                                                                                                           |
-| --------------------------------------- | --------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `public/images/hero-zanzibar.webp`      | Beach aerial, Zanzibar, Tanzania                                      | Alexander Osipenko | [Unsplash source](https://unsplash.com/photos/aerial-view-of-beach-during-daytime-XxOpvGbNCd0) · [Unsplash License](https://unsplash.com/license)            |
-| `public/images/zanzibar.webp`           | Aerial coast, Zanzibar, Tanzania                                      | Dajana Reçi        | [Pexels source](https://www.pexels.com/photo/aerial-view-of-zanzibar-s-pristine-beaches-30125143/) · [Pexels License](https://www.pexels.com/license/)       |
-| `public/images/zanzibar-coast.webp`     | Coast and reef aerial, Zanzibar, Tanzania                             | Dajana Reçi        | [Pexels source](https://www.pexels.com/photo/aerial-view-of-zanzibar-s-stunning-coastline-30125141/) · [Pexels License](https://www.pexels.com/license/)     |
-| `public/images/experience.webp`         | Traditional dhow on a Zanzibar beach                                  | Denys Gromov       | [Pexels source](https://www.pexels.com/photo/red-and-white-boat-on-sand-under-blue-sky-4860993/) · [Pexels License](https://www.pexels.com/license/)         |
-| `public/images/dubai.webp`              | Dubai skyline and Burj Khalifa at sunset                              | Nithin Daison      | [Pexels source](https://www.pexels.com/photo/dubai-skyline-with-iconic-burj-khalifa-at-sunset-34787060/) · [Pexels License](https://www.pexels.com/license/) |
-| `public/images/dubai-detail.webp`       | Dubai skyline reflecting on water                                     | Magda Ehlers       | [Pexels source](https://www.pexels.com/photo/skyline-of-dubai-at-sunset-with-reflections-35027035/) · [Pexels License](https://www.pexels.com/license/)      |
-| `public/images/ghana.webp`              | Black Star Gate, Accra, Ghana; source page calls it Independence Arch | Axel Dagrou        | [Pexels source](https://www.pexels.com/photo/independence-arch-in-accra-ghana-20131678/) · [Pexels License](https://www.pexels.com/license/)                 |
-| `public/images/ghana-detail.webp`       | Beach aerial, Accra, Ghana                                            | Amos Kofi Commey   | [Pexels source](https://www.pexels.com/photo/aerial-view-of-accra-beach-in-ghana-30035716/) · [Pexels License](https://www.pexels.com/license/)              |
-| `public/images/dominican-republic.webp` | Palm-fringed beach, Dominican Republic                                | Melina Vargas      | [Pexels source](https://www.pexels.com/photo/palm-trees-on-a-tropical-beach-16653855/) · [Pexels License](https://www.pexels.com/license/)                   |
+`public/images/retreats-share.jpg` is a 1200 × 630 crop of the supplied arrival group photograph for link previews. It is not an additional outside photo.
 
-Pexels permits use of its free imagery on websites, apps, and marketing material. Its license prohibits implying endorsement by depicted people or brands and distributing the assets as a competing stock collection. Unsplash permits free commercial and noncommercial use, subject to its license restrictions. The assets here are supporting parts of this designed website, not a stock library for resale. Retain this register when handing over the project.
+## Original destination illustrations
 
-## Local fonts
+Three original SVG compositions are included at `public/images/illustrations/`: `dubai.svg`, `zanzibar.svg`, and `dominican-republic.svg`. These use vector shapes and the established emerald, warm ivory and gold palette. They are destination-inspired illustrations, not photographs of trips, hotels or confirmed venues. Cards and destination galleries label them accordingly. They do not depend on an external service or image-generation API.
 
-| Local file                                     | Typeface                                             | Usage                           |
-| ---------------------------------------------- | ---------------------------------------------------- | ------------------------------- |
-| `public/fonts/cormorant-garamond.woff2`        | Cormorant Garamond, variable normal, weights 300–700 | Editorial headings              |
-| `public/fonts/cormorant-garamond-italic.woff2` | Cormorant Garamond, variable italic, weights 300–700 | Heading emphasis                |
-| `public/fonts/dm-sans.woff2`                   | DM Sans, variable normal, weights 400–700            | Navigation, body, forms, and UI |
+## Existing database compatibility
 
-These are the Latin subsets served by Google Fonts. They use the SIL Open Font License, supplied alongside the font binaries as `Cormorant-Garamond-OFL.txt` and `DM-Sans-OFL.txt`. Font sources: [Cormorant Garamond](https://github.com/google/fonts/tree/main/ofl/cormorantgaramond) and [DM Sans](https://github.com/google/fonts/tree/main/ofl/dmsans).
+The original nine stock WebP assets are absent from this package. Existing SQLite records may still name them. `src/data/media.ts` maps only those known legacy paths to the new assets at read time and removes duplicate gallery paths. Custom uploaded paths, retreat dates, prices, booking records, content and settings remain intact. The installer removes unchanged original stock assets by SHA-256 and backs them up. Its cleanup preserves customized files at those paths.
 
-## Assets deliberately left for the owner
+## Brand and typography
 
-- A rights-cleared photograph of Kimona Hanson. No stock portrait impersonates the founder.
-- Actual Ghana 2026 retreat photographs and highlight film, with participant permission.
-- Authentic written or video testimonials and the traveler’s publication consent.
-- A brand-owned cinematic homepage film, if desired. The bundled beach image is the usable fallback.
+The original owner-supplied `public/images/reign-in-wealth-logo.png` and the branded favicon, app icon and Apple icon are retained. The existing Brand component presents the master wordmark with the RETREATS subtitle. No attendee photograph is assigned to the founder without an identified founder image.
 
-Upload replacements through the admin interface and assign them to the relevant retreat or site setting. Destination images remain editable independently of the code.
-
-## Retreat logo lockup
-
-The supplied PNG includes the word “Conference” below the master Reign in Wealth wordmark. The original image is kept unchanged. The `Brand` component uses a CSS crop to show the master wordmark and adds a separate, accessible “RETREATS” subtitle. No conference identity is presented as the retreat business.
+Local Cormorant Garamond normal/italic and DM Sans font files remain in `public/fonts/`. Their supplied SIL Open Font License files remain beside them. Images and fonts used by this update are served locally.

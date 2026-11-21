@@ -25,7 +25,7 @@ for item in src public scripts docs; do
     cp -a "${REPO_ROOT}/${item}/." "${APP_ROOT}/${item}/"
   fi
 done
-for item in app.js package.json package-lock.json next.config.ts next-env.d.ts tsconfig.json .env.example; do
+for item in app.js package.json package-lock.json next.config.ts next-env.d.ts tsconfig.json .env.example .env.production.example; do
   if [[ -f "${REPO_ROOT}/${item}" ]]; then
     cp -a "${REPO_ROOT}/${item}" "${APP_ROOT}/${item}"
   fi
@@ -40,7 +40,7 @@ export PATH="/opt/cpanel/ea-nodejs22/bin:${PATH}"
 hash -r
 if [[ ! -f .env ]]; then
   echo 'ERROR: Missing production .env in application directory.' >&2
-  echo "Create ${APP_ROOT}/.env from .env.example and set APP_URL, secrets, and provider keys." >&2
+  echo "In ${APP_ROOT}, run node scripts/production-env.mjs --admin-email YOUR_EMAIL --apply." >&2
   exit 1
 fi
 if ! command -v node >/dev/null 2>&1 || ! command -v npm >/dev/null 2>&1; then
@@ -56,8 +56,10 @@ fi
 
 export NEXT_TELEMETRY_DISABLED=1
 export NODE_ENV=production
-npm ci --no-audit --no-fund
+npm ci --include=dev --no-audit --no-fund
+npm run check:production
 npm run build
+node scripts/cleanup-legacy-images.mjs
 
 # Passenger-based cPanel apps watch this file for restarts; other process managers
 # (such as systemd/PM2) must be configured to restart independently.

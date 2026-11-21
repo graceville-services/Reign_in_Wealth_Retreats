@@ -3,6 +3,9 @@
 /.next/
 /.env*
 !/.env.example
+!/.env.production.example
+/.riw-update-backups/
+/.riw-update-lock
 # Runtime data only; src/data/retreats.ts is source and must remain tracked.
 /data/
 /backups/

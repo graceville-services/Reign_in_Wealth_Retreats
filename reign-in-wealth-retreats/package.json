@@ -12,6 +12,8 @@
     "start": "next start --hostname 0.0.0.0",
     "typecheck": "tsc --noEmit",
     "setup": "node scripts/setup.mjs",
+    "setup:production": "node scripts/production-env.mjs",
+    "check:production": "node scripts/production-env.mjs --check",
     "test": "node --import tsx --test tests/*.test.ts",
     "backup": "node scripts/backup.mjs",
     "jobs": "node --import tsx scripts/jobs.ts",

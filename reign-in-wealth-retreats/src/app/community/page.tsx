@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { featuredPhotos } from "@/data/gallery";
 import { LeadForm } from "@/components/site/LeadForm";
 export const metadata: Metadata = {
   title: "Join our global community",
@@ -9,7 +10,7 @@ export default function CommunityPage() {
   return (
     <section className="community-page">
       <div className="community-visual">
-        <img src="/images/hero-zanzibar.webp" alt="Zanzibar coastline" />
+        <img src={featuredPhotos.arrival.src} alt={featuredPhotos.arrival.alt} />
         <div>
           <p className="eyebrow light">A MORE CONNECTED WORLD</p>
           <h1>

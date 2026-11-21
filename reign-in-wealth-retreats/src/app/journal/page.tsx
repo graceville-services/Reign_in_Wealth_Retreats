@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { featuredPhotos } from "@/data/gallery";
+import { destinationArtwork } from "@/data/media";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageIntro, CommunityBanner } from "@/components/site/PageIntro";
@@ -20,7 +22,7 @@ export default function JournalPage() {
         <div className="container">
           <Link className="journal-feature" href="/journal/ghana-2026">
             <div className="journal-image">
-              <img src="/images/ghana.webp" alt="Ghana destination landscape" />
+              <img src={featuredPhotos.exploring.src} alt={featuredPhotos.exploring.alt} />
               <span>THE GHANA CHAPTER / 2026</span>
             </div>
             <div className="journal-copy">
@@ -38,8 +40,7 @@ export default function JournalPage() {
                 Explore the chapter <ArrowUpRight size={17} />
               </span>
               <p className="journal-note">
-                The full retreat recap is being curated. Images shown are
-                destination photography.
+                Arrival, community, shared meals, and discovery — see the moments from our Ghana retreat.
               </p>
             </div>
           </Link>
@@ -51,8 +52,8 @@ export default function JournalPage() {
             <div className="journal-next-grid">
               <Link href="/retreats/dubai-2026">
                 <img
-                  src="/images/dubai.webp"
-                  alt="Dubai skyline"
+                  src={destinationArtwork.dubai}
+                  alt="Original Dubai destination illustration"
                   loading="lazy"
                 />
                 <span>
@@ -61,8 +62,8 @@ export default function JournalPage() {
               </Link>
               <Link href="/retreats/zanzibar-2027">
                 <img
-                  src="/images/hero-zanzibar.webp"
-                  alt="Zanzibar coastline"
+                  src={destinationArtwork.zanzibar}
+                  alt="Original Zanzibar destination illustration"
                   loading="lazy"
                 />
                 <span>

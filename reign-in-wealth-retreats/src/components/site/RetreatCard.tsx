@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays, MapPin } from "lucide-react";
 import { Retreat, money } from "@/lib/types";
+import { describeRetreatImage, isDestinationArtwork } from "@/data/media";
 export function RetreatCard({
   retreat,
   index = 0,
@@ -14,7 +15,7 @@ export function RetreatCard({
       <Link href={`/retreats/${retreat.slug}`} className="retreat-card-image">
         <img
           src={retreat.image}
-          alt={`${retreat.destination}, ${retreat.country} destination landscape`}
+          alt={describeRetreatImage(retreat.image, retreat.destination)}
           loading="lazy"
           width="720"
           height="900"
@@ -28,6 +29,7 @@ export function RetreatCard({
                 ? "On the horizon"
                 : "The upcoming collection"}
         </span>
+        {isDestinationArtwork(retreat.image) && <span className="card-art-label">Destination illustration</span>}
         <span className="card-arrow">
           <ArrowUpRight size={21} />
         </span>

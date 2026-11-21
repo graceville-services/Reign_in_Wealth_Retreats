@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Expand, X, ArrowLeft, ArrowRight } from "lucide-react";
+import { describeRetreatImage, retreatMediaCaption } from "@/data/media";
 export function Gallery({
   images,
   title,
@@ -13,7 +14,7 @@ export function Gallery({
   const lastTrigger = useRef<HTMLButtonElement | null>(null);
   useEffect(() => {
     if (selected !== null) {
-      dialog.current?.showModal();
+      if (dialog.current && !dialog.current.open) dialog.current.showModal();
       document.body.style.overflow = "hidden";
     } else {
       dialog.current?.close();
@@ -38,11 +39,11 @@ export function Gallery({
               lastTrigger.current = e.currentTarget;
               setSelected(i);
             }}
-            aria-label={`View ${title} destination photograph ${i + 1}`}
+            aria-label={`View ${title} image ${i + 1}`}
           >
             <img
               src={src}
-              alt={`${title} destination inspiration ${i + 1}`}
+              alt={describeRetreatImage(src, title)}
               loading="lazy"
             />
             <Expand size={17} />
@@ -50,8 +51,7 @@ export function Gallery({
         ))}
       </div>
       <p className="image-caption">
-        Destination photography for inspiration. Confirmed accommodation and
-        retreat images will be shared with the final package.
+        {retreatMediaCaption(images)}
       </p>
       <dialog
         ref={dialog}
@@ -77,7 +77,7 @@ export function Gallery({
           <>
             <img
               src={images[selected]}
-              alt={`${title} destination photograph ${selected + 1}`}
+              alt={describeRetreatImage(images[selected], title)}
             />
             <div className="gallery-controls">
               <button onClick={() => move(-1)} aria-label="Previous photograph">

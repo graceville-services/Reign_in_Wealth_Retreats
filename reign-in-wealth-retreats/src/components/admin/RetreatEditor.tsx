@@ -22,8 +22,8 @@ const emptyRetreat: Retreat = {
   tagline: "",
   excerpt: "",
   description: "",
-  heroImage: "/images/zanzibar.webp",
-  image: "/images/zanzibar.webp",
+  heroImage: "/images/illustrations/zanzibar.svg",
+  image: "/images/illustrations/zanzibar.svg",
   gallery: [],
   dateLabel: "Dates to be announced",
   startDate: null,
@@ -544,7 +544,7 @@ export default function RetreatEditor({
               <input
                 value={draft.image}
                 onChange={(e) => update("image", e.target.value)}
-                placeholder="/images/ghana.webp"
+                placeholder="/gallery/ghana-2026/explore-bk7a1549.webp"
               />
               <small>
                 Use a landscape photograph with a clear focal point.
@@ -562,7 +562,7 @@ export default function RetreatEditor({
               <input
                 value={draft.heroImage}
                 onChange={(e) => update("heroImage", e.target.value)}
-                placeholder="/images/ghana.webp"
+                placeholder="/gallery/ghana-2026/explore-bk7a1549.webp"
               />
             </label>
             <label className="dash-field">

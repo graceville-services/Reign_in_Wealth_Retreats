@@ -1,18 +1,19 @@
 "use client";
 import { useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
+import { featuredPhotos } from "@/data/gallery";
+import { Photo } from "./Photo";
 export function HeroMedia({ video }: { video: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   if (!video)
     return (
-      <img
-        src="/images/hero-zanzibar.webp"
-        alt="Turquoise water and the palm-fringed coast of Zanzibar"
+      <Photo
+        photo={featuredPhotos.waterfall}
         className="hero-image"
+        sizes="(max-width: 640px) 100vw, 58vw"
+        loading="eager"
         fetchPriority="high"
-        width="1920"
-        height="1280"
       />
     );
   return (
@@ -20,7 +21,7 @@ export function HeroMedia({ video }: { video: string }) {
       <video
         ref={ref}
         className="hero-image"
-        poster="/images/hero-zanzibar.webp"
+        poster={featuredPhotos.waterfall.src}
         muted
         loop
         playsInline
@@ -32,10 +33,11 @@ export function HeroMedia({ video }: { video: string }) {
       </video>
       <button
         className="hero-video-toggle"
-        onClick={() => (playing ? ref.current?.pause() : ref.current?.play())}
-        aria-label={
-          playing ? "Pause destination film" : "Play destination film"
-        }
+        onClick={() => {
+          if (playing) ref.current?.pause();
+          else void ref.current?.play().catch(() => setPlaying(false));
+        }}
+        aria-label={playing ? "Pause retreat film" : "Play retreat film"}
       >
         {playing ? <Pause size={16} /> : <Play size={16} />}
         <span>{playing ? "Pause film" : "Play film"}</span>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { featuredPhotos } from "@/data/gallery";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -67,7 +68,7 @@ export default function ExperiencePage() {
         title="We don’t just travel."
         italic="We expand."
         description="We experience, connect, grow, and discover what becomes possible when we see a little more of the world."
-        image="/images/experience.webp"
+        image={featuredPhotos.exploring.src}
       />
       <section className="section-space">
         <div className="container experience-intro">
@@ -108,8 +109,8 @@ export default function ExperiencePage() {
       </section>
       <section className="image-quote-section">
         <img
-          src="/images/hero-zanzibar.webp"
-          alt="Zanzibar coastline"
+          src={featuredPhotos.nature.src}
+          alt={featuredPhotos.nature.alt}
           loading="lazy"
         />
         <div>

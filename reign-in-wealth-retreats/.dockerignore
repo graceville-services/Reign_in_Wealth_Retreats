@@ -7,6 +7,9 @@
 /.env
 /.env.*
 !/.env.example
+!/.env.production.example
+/.riw-update-backups/
+/.riw-update-lock
 /data/
 /backups/
 /*.zip

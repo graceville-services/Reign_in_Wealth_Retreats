@@ -1,76 +1,60 @@
 import imported from "./gallery-photos.json";
 
-/**
- * Gallery content is curated and committed with the site; importing is an
- * explicit editorial step. Do not render remote Drive share URLs in production.
- */
+/** Owner-supplied photographs, published as local, metadata-free WebP assets. */
 export type GalleryPhoto = {
   src: string;
+  thumbnail?: string;
+  width?: number;
+  height?: number;
+  thumbnailWidth?: number;
   album: string;
   alt: string;
   caption: string;
   location?: string;
   portrait?: boolean;
 };
-
 export const approvedGalleryPhotos: GalleryPhoto[] = imported as GalleryPhoto[];
-
-/** Concept photography already bundled with the site, not photographs of guests. */
-export const inspirationPhotos: GalleryPhoto[] = [
+function photo(name: string): GalleryPhoto {
+  const match = approvedGalleryPhotos.find((item) =>
+    item.src.endsWith(`/${name}.webp`),
+  );
+  if (!match) throw new Error(`Missing curated photograph: ${name}`);
+  return match;
+}
+export const featuredPhotos = {
+  arrival: photo("arrival-edi-14-2"),
+  conversation: photo("arrival-edi-7-2"),
+  waterfall: photo("explore-edi-1"),
+  exploring: photo("explore-bk7a1549"),
+  nature: photo("explore-bk7a1538"),
+  community: photo("community-edi-12"),
+  giving: photo("community-edi-3"),
+  table: photo("community-edi-37"),
+  meal: photo("community-edi-46"),
+};
+export const galleryAlbums = [
   {
-    src: "/images/ghana.webp",
-    album: "Ghana",
-    alt: "Architectural landmark in Ghana",
-    caption: "A wider world begins with a new perspective",
-    location: "Ghana",
+    name: "Arrival & connection",
+    slug: "arrival",
+    label: "A warm welcome",
+    image: featuredPhotos.arrival,
   },
   {
-    src: "/images/zanzibar-coast.webp",
-    album: "Zanzibar",
-    alt: "Turquoise sea along the Zanzibar coastline",
-    caption: "The beauty of slowing down",
-    location: "Zanzibar, Tanzania",
+    name: "Giving back",
+    slug: "giving-back",
+    label: "Travel with purpose",
+    image: featuredPhotos.community,
   },
   {
-    src: "/images/dubai-detail.webp",
-    album: "Dubai",
-    alt: "Warm skyline of Dubai at golden hour",
-    caption: "Possibility beyond the familiar",
-    location: "Dubai, UAE",
+    name: "Around the table",
+    slug: "around-the-table",
+    label: "Good food. Better company.",
+    image: featuredPhotos.table,
   },
   {
-    src: "/images/ghana-detail.webp",
-    album: "Ghana",
-    alt: "Aerial view of the Ghanaian coast",
-    caption: "A coast full of stories",
-    location: "Ghana",
-  },
-  {
-    src: "/images/hero-zanzibar.webp",
-    album: "Zanzibar",
-    alt: "Palm-fringed coastline in Zanzibar",
-    caption: "Find room for wonder",
-    location: "Zanzibar, Tanzania",
-  },
-  {
-    src: "/images/dominican-republic.webp",
-    album: "Dominican Republic",
-    alt: "Tropical beachfront in the Dominican Republic",
-    caption: "New horizons await",
-    location: "Dominican Republic",
-  },
-  {
-    src: "/images/dubai.webp",
-    album: "Dubai",
-    alt: "Dubai skyline and city waterfront",
-    caption: "Where ambition meets imagination",
-    location: "Dubai, UAE",
-  },
-  {
-    src: "/images/experience.webp",
-    album: "Zanzibar",
-    alt: "Calm coastal setting and lush tropical scenery",
-    caption: "Experience more of the world",
-    location: "Destination inspiration",
+    name: "Explore Ghana",
+    slug: "explore-ghana",
+    label: "Make room for wonder",
+    image: featuredPhotos.waterfall,
   },
 ];
