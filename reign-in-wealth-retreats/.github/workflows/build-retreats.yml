@@ -1,0 +1,60 @@
+
+name: Build Reign in Wealth Retreats
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+
+    defaults:
+      run:
+        working-directory: reign-in-wealth-retreats
+
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      APP_URL: https://reigninwealthretreats.com
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: reign-in-wealth-retreats/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --include=dev
+
+      - name: Create temporary build configuration
+        run: npm run setup
+
+      - name: Build production website
+        run: npm run build
+
+      - name: Package standalone application
+        run: |
+          mkdir -p release
+          cp -a .next/standalone/. release/
+          mkdir -p release/.next/static
+          cp -a .next/static/. release/.next/static/
+          cp -a public release/public
+          rm -f release/.env
+          tar -czf retreat-production.tar.gz -C release .
+
+      - name: Upload production build
+        uses: actions/upload-artifact@v4
+        with:
+          name: reign-retreats-production
+          path: reign-in-wealth-retreats/retreat-production.tar.gz
+          retention-days: 7
